@@ -102,6 +102,7 @@
                 class="text-2xl font-semibold leading-tight text-gray-900 hover:underline"
               >
                 {{- product.title -}}
+                Test Change
               </a>
 
               <div class="mt-2 flex items-center gap-2">
@@ -304,73 +305,71 @@
 
 {% javascript %}
   $(document).ready(function () {
-    $(document).on("change", ".selectVarient", function () {
-    let selectedValue = $(this).val();
-    $(this).closest("form").find('input[name="id"]').val(selectedValue);
-    console.log("Selected Variant ID:", selectedValue);
-  });
-   $('.add-to-cart').hide();
-   $(document).on("change", ".product-quantity", function () {
-     let quantityInput = $(this).val();
-     let addToCartBtn = $(this).parent('.product-form__item').siblings('.add-to-cart');
-      console.log("addToCartBtn", addToCartBtn)
-      console.log("quantityInput", quantityInput)
+    $(document).on('change', '.selectVarient', function () {
+      let selectedValue = $(this).val();
+      $(this).closest('form').find('input[name="id"]').val(selectedValue);
+      console.log('Selected Variant ID:', selectedValue);
+    });
+    $('.add-to-cart').hide();
+    $(document).on('change', '.product-quantity', function () {
+      let quantityInput = $(this).val();
+      let addToCartBtn = $(this).parent('.product-form__item').siblings('.add-to-cart');
+      console.log('addToCartBtn', addToCartBtn);
+      console.log('quantityInput', quantityInput);
       if (parseInt($(this).val()) > 0) {
-          addToCartBtn.show();
-        }
-        else {
-          addToCartBtn.hide();
-        }
-   });
-
-   const forms = document.querySelectorAll("form[action='/cart/add']")
-    forms.forEach(form => {
-    form.addEventListener("submit", async (e) => {
-
-        e.preventDefault();
-        let selectedVariant = form.querySelector(".selectVarient").value;
-         let quantity = form.querySelector(".product-quantity").value;
-        let firstName = form.querySelector(".fname-label").value;
-        let lastName = form.querySelector(".lname-label").value;
-        console.log("productId", selectedVariant , quantity, firstName, lastName)
-        console.log("Button clicked!");
-         let formData = {
-             'items': [{
-              'id': selectedVariant,
-              'quantity': quantity,
-              }]
-          };
-
-          if (firstName.trim() || lastName.trim()) {
-              let properties = {};
-              if (firstName.trim()) properties['First name'] = firstName;
-              if (lastName.trim()) properties['_Last name'] = lastName;
-
-              formData.items[0].properties = properties;
-          }
-        console.log('formData', formData)
-        await fetch('/cart/add.js', {
-          method: 'POST',
-           headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        })
-      .then(response => {
-        return response.json();
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+        addToCartBtn.show();
+      } else {
+        addToCartBtn.hide();
+      }
     });
 
+    const forms = document.querySelectorAll("form[action='/cart/add']");
+    forms.forEach((form) => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let selectedVariant = form.querySelector('.selectVarient').value;
+        let quantity = form.querySelector('.product-quantity').value;
+        let firstName = form.querySelector('.fname-label').value;
+        let lastName = form.querySelector('.lname-label').value;
+        console.log('productId', selectedVariant, quantity, firstName, lastName);
+        console.log('Button clicked!');
+        let formData = {
+          items: [
+            {
+              id: selectedVariant,
+              quantity: quantity,
+            },
+          ],
+        };
+
+        if (firstName.trim() || lastName.trim()) {
+          let properties = {};
+          if (firstName.trim()) properties['First name'] = firstName;
+          if (lastName.trim()) properties['_Last name'] = lastName;
+
+          formData.items[0].properties = properties;
+        }
+        console.log('formData', formData);
+        await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
     });
 
     // $(".product-quantity").each(function () {
     //   var productId = $(this).data("product-id");
     //   var quantityInput = $("#Quantity-" + productId);
     //   var addToCartBtn = $("#addToCartBtn-" + productId);
-
 
     //   function toggleButton() {
     //     if (parseInt(quantityInput.val()) > 0) {
@@ -383,7 +382,6 @@
     //   quantityInput.on("input", toggleButton);
     // });
     // });
-
   });
 {% endjavascript %}
 {% schema %}
@@ -412,14 +410,15 @@
     }
   ],
 
-  "presets": [{
-    "name": "Product List",
-    "blocks": [
-      {
-        "type": "text",
-      }
-  ],
-  }]
-
+  "presets": [
+    {
+      "name": "Product List",
+      "blocks": [
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
