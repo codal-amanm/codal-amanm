@@ -1,0 +1,425 @@
+<section class="product-list">
+  <div class="page-width">
+    <div
+      class="flex flex-wrap -mx-4 gap-y-8"
+    >
+      {% for product in section.settings.collection.products %}
+        <div class="xl:w-1/4 lg:w-1/3 md:w-1/2 w-full px-4">
+          <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm h-full">
+            <div class="w-full">
+              <a class="block" href="#">
+                {% for image in product.images limit: 1 %}
+                  <img
+                    class="mx-auto object-contain aspect-square"
+                    src="{{ image | image_url: width: '500px' }}"
+                    alt=""
+                  >
+                {% endfor %}
+              </a>
+            </div>
+            <div class="pt-6">
+              <div class="mb-4 flex items-center justify-between gap-4">
+                <span
+                  class="me-2 rounded bg-blue-100 px-2.5 py-0.5 text-base font-medium text-primary-800"
+                >
+                  Up to 35% off
+                </span>
+
+                <div class="flex items-center justify-end gap-1">
+                  <button
+                    type="button"
+                    data-tooltip-target="tooltip-quick-look"
+                    class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+                  >
+                    <span class="sr-only"> Quick look </span>
+                    <svg
+                      class="h-5 w-5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-width="2"
+                        d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                      />
+                      <path
+                        stroke="currentColor"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                      />
+                    </svg>
+                  </button>
+                  <div
+                    id="tooltip-quick-look"
+                    role="tooltip"
+                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-lg font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+                    data-popper-placement="top"
+                  >
+                    Quick look
+                    <div class="tooltip-arrow" data-popper-arrow=""></div>
+                  </div>
+
+                  <button
+                    type="button"
+                    data-tooltip-target="tooltip-add-to-favorites"
+                    class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+                  >
+                    <span class="sr-only"> Add to Favorites </span>
+                    <svg
+                      class="h-5 w-5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"
+                      />
+                    </svg>
+                  </button>
+                  <div
+                    id="tooltip-add-to-favorites"
+                    role="tooltip"
+                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-lg font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+                    data-popper-placement="top"
+                  >
+                    Add to favorites
+                    <div class="tooltip-arrow" data-popper-arrow=""></div>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href="#"
+                class="text-2xl font-semibold leading-tight text-gray-900 hover:underline"
+              >
+                {{- product.title -}}
+              </a>
+
+              <div class="mt-2 flex items-center gap-2">
+                <div class="flex items-center">
+                  <svg
+                    class="h-4 w-4 text-yellow-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="h-4 w-4 text-yellow-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="h-4 w-4 text-yellow-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="h-4 w-4 text-yellow-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="h-4 w-4 text-yellow-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"
+                    />
+                  </svg>
+                </div>
+
+                <p class="text-lg font-medium text-gray-900">5.0</p>
+                <p class="text-lg font-medium text-gray-500">(455)</p>
+              </div>
+
+              <ul class="mt-2 flex items-center gap-4">
+                <li class="flex items-center gap-2">
+                  <svg
+                    class="h-4 w-4 text-gray-500"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
+                    />
+                  </svg>
+                  <p class="text-lg font-medium text-gray-500">Fast Delivery</p>
+                </li>
+
+                <li class="flex items-center gap-2">
+                  <svg
+                    class="h-4 w-4 text-gray-500"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-width="2"
+                      d="M8 7V6c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1h-1M3 18v-7c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                    />
+                  </svg>
+                  <p class="text-lg font-medium text-gray-500">Best Price</p>
+                </li>
+              </ul>
+              <p class="text-2xl mt-4 font-extrabold leading-tight text-gray-900">{{ product.price | money }}</p>
+
+              <!-- <form method="post" action="/cart/add"> -->
+              {% form 'product', product %}
+                {% if product.options_by_name.color.values %}
+                  <div class="flex items-center mt-4">
+                    <p class="text-base font-bold">Color:</p>
+                    <select class="ml-2 border border-black-100 rounded-lg p-2 w-1/2 text-base !outline-none !shadow-none selectColor">
+                      {% for colorValue in product.options_by_name.color.values %}
+                        <option value="{{ colorValue.id }}">{{ colorValue.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endif %}
+
+                {% if product.options_by_name.size.values %}
+                  <div class="flex items-center mt-4">
+                    <p class="text-base font-bold">Size:</p>
+                    <select class="ml-2 border border-black-100 rounded-lg p-2 w-1/2 text-base !outline-none !shadow-none selectSize">
+                      {% for optValue in product.options_by_name.size.values %}
+                        <option value="{{ optValue.id }}">{{ optValue.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endif %}
+                <div class="flex items-center mt-4 -mx-4">
+                  <div class="w-1/2 px-4">
+                    <label for="first-name-{{ product.id }}" class="text-base font-bold block">First Name</label>
+                    <input
+                      type="text"
+                      id="first-name-label-{{ product.id }}"
+                      name="name-label"
+                      value=""
+                      class="fname-label border border-black-100 rounded-lg p-2 w-1/2 text-base !outline-none !shadow-none w-full"
+                    >
+                  </div>
+                  <div class="w-1/2 px-4">
+                    <label for="last-name-label-{{ product.id }}" class="text-base font-bold block">Last Name</label>
+                    <input
+                      type="text"
+                      id="last-name-label-{{ product.id }}"
+                      name="name-label"
+                      value=""
+                      class="lname-label border border-black-100 rounded-lg p-2 w-1/2 text-base !outline-none !shadow-none w-full"
+                    >
+                  </div>
+                </div>
+                {% if product.variants %}
+                  <div class="flex items-center mt-4">
+                    <p class="text-base font-bold">Choice:</p>
+                    <select
+                      class="ml-2 border border-black-100 rounded-lg p-2 w-1/2 text-base !outline-none !shadow-none selectVarient"
+                      id="selectVarient"
+                    >
+                      {% for variant in product.variants %}
+                        <option value="{{ variant.id }}">{{ variant.title }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endif %}
+                <div class="flex items-center justify-between gap-4 mt-4 ">
+                  <div class="product-form__item product-form__item--quantity flex items-center">
+                    <label for="Quantity-{{ product.id }}" class="text-base font-bold">Quantity</label>
+                    <input
+                      type="number"
+                      id="Quantity-{{ product.id }}"
+                      name="quantity"
+                      value="0"
+                      min="0"
+                      class="product-quantity ml-2 border border-black-100 rounded-lg p-2 w-1/2 text-base !outline-none !shadow-none"
+                      data-product-id="{{ product.id }}"
+                    >
+                  </div>
+
+                  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                  <button
+                    type="submit"
+                    id="addToCartBtn"
+                    class="inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-lg font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300 add-to-cart"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              {% endform %}
+              <!-- </form> -->
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% javascript %}
+  $(document).ready(function () {
+    $(document).on("change", ".selectVarient", function () {
+    let selectedValue = $(this).val();
+    $(this).closest("form").find('input[name="id"]').val(selectedValue);
+    console.log("Selected Variant ID:", selectedValue);
+  });
+   $('.add-to-cart').hide();
+   $(document).on("change", ".product-quantity", function () {
+     let quantityInput = $(this).val();
+     let addToCartBtn = $(this).parent('.product-form__item').siblings('.add-to-cart');
+      console.log("addToCartBtn", addToCartBtn)
+      console.log("quantityInput", quantityInput)
+      if (parseInt($(this).val()) > 0) {
+          addToCartBtn.show();
+        }
+        else {
+          addToCartBtn.hide();
+        }
+   });
+
+   const forms = document.querySelectorAll("form[action='/cart/add']")
+    forms.forEach(form => {
+    form.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+        let selectedVariant = form.querySelector(".selectVarient").value;
+         let quantity = form.querySelector(".product-quantity").value;
+        let firstName = form.querySelector(".fname-label").value;
+        let lastName = form.querySelector(".lname-label").value;
+        console.log("productId", selectedVariant , quantity, firstName, lastName)
+        console.log("Button clicked!");
+         let formData = {
+             'items': [{
+              'id': selectedVariant,
+              'quantity': quantity,
+              }]
+          };
+
+          if (firstName.trim() || lastName.trim()) {
+              let properties = {};
+              if (firstName.trim()) properties['First name'] = firstName;
+              if (lastName.trim()) properties['_Last name'] = lastName;
+
+              formData.items[0].properties = properties;
+          }
+        console.log('formData', formData)
+        await fetch('/cart/add.js', {
+          method: 'POST',
+           headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+      .then(response => {
+        return response.json();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    });
+
+    });
+
+    // $(".product-quantity").each(function () {
+    //   var productId = $(this).data("product-id");
+    //   var quantityInput = $("#Quantity-" + productId);
+    //   var addToCartBtn = $("#addToCartBtn-" + productId);
+
+
+    //   function toggleButton() {
+    //     if (parseInt(quantityInput.val()) > 0) {
+    //       addToCartBtn.show();
+    //     } else {
+    //       addToCartBtn.hide();
+    //     }
+    //   }
+    //   toggleButton();
+    //   quantityInput.on("input", toggleButton);
+    // });
+    // });
+
+  });
+{% endjavascript %}
+{% schema %}
+{
+  "name": "Product List",
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Hello, world!"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title" },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+
+  "presets": [{
+    "name": "Product List",
+    "blocks": [
+      {
+        "type": "text",
+      }
+  ],
+  }]
+
+}
+{% endschema %}

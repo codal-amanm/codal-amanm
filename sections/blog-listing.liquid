@@ -1,0 +1,56 @@
+<div class="page-width">
+  <div class="py-10">
+    <h2>Article</h2>
+    {% if section.settings.article != blank %}
+      <img
+        src="{{ section.settings.article.image | image_url: width: 400 }}"
+        alt="Article Image"
+        width="{{ section.settings.article.image_width }}"
+        height="100%"
+      >
+      <p class="font-bold">{{ section.settings.article.title }}</p>
+    {% endif %}
+  </div>
+
+  <div class="py-10">
+    <h2>Blog</h2>
+    {% if section.settings.blog != blank %}
+      <div class="flex">
+        {% for article in section.settings.blog.articles reversed %}
+          <div>
+            <img
+              src="{{ article.image | image_url: width: 400 }}"
+              alt="Blog Image"
+              width="{{ article.image_width }}"
+              height="100%"
+            >
+            <p class="font-bold">{{ article.title }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Blog List",
+  "tag": "section",
+  "settings": [
+     {
+    "type": "article",
+    "id": "article",
+    "label": "Article"
+  },
+  {
+    "type": "blog",
+    "id": "blog",
+    "label": "Blog"
+  },
+  ],
+   "presets": [
+    {
+      "name": "Blog Listing",
+    }
+  ]
+}
+{% endschema %}

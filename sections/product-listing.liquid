@@ -1,0 +1,73 @@
+<div class="page-width">
+  <div class="py-20">
+    <h2 class="mb-5">Product List</h2>
+    <div class="flex flex-wrap -mx-4 gap-y-10">
+      {% for block in section.blocks %}
+        <div class="px-4">
+          {% case block.type %}
+            {% when 'product' %}
+              <a href="{{ block.settings.product.url }}">
+                {% if block.settings.product.featured_image %}
+                  <img src="{{ block.settings.product.featured_image | image_url: width: '340px', height: '400px' }}">
+                {% endif %}
+                <p class="font-bold mt-2">{{ block.settings.product.title }}</p>
+                <p>{{ block.settings.product.price | money }}</p>
+              </a>
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="py-20">
+    <h2 class="mb-5">Collection Product List</h2>
+    <div class="flex flex-wrap -mx-4 gap-y-10">
+      {% for product in section.settings.collection.products %}
+        <div class="px-4">
+          <a href="{{ product.url }}">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | image_url: width: '340px', height: '400px' }}">
+            {% endif %}
+            <p class="font-bold mt-2">{{ product.title }}</p>
+            <p>{{ product.price | money }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Product Listing",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Select Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    },
+  ],
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+  ],
+  "presets": [
+    {
+      "name": "Product Listing",
+    }
+  ]
+}
+{% endschema %}

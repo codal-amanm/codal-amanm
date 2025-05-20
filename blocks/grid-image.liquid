@@ -1,0 +1,48 @@
+{% if block.settings.image %}
+  <div
+    class="
+      {% if block.settings.vertical_alignment == '50%' %}
+        col-span-2 row-span-2
+      {% endif %}
+    "
+  >
+    {{ block.settings.vertical_alignment }}
+    <img
+      src="{{ block.settings.image | image_url: width: '800px' }}"
+      class="block object-cover w-full h-full aspect-square"
+    >
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "Grid Image Gallery",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Select Image",
+    },
+    {
+        "type": "select",
+        "id": "vertical_alignment",
+        "label": "Vertical alignment",
+        "options": [
+          {
+            "value": "25%",
+            "label": "25%"
+          },
+          {
+            "value": "50%",
+            "label": "50%"
+          },
+        ],
+        "default": "25%"
+      },
+  ],
+  "presets": [
+    {
+      "name": "Image",
+    }
+  ]
+}
+{% endschema %}

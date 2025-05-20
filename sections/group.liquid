@@ -1,0 +1,13 @@
+<div class="page-width !py-10">
+  <div class="flex flex-wrap -mx-4 [&>div]:px-4">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Group",
+  "blocks": [{"type": "test"}, {"type": "TitleWithImageBlock"}],
+  "presets": [{"name": "Group"}]
+}
+{% endschema %}

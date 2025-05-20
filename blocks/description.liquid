@@ -1,0 +1,28 @@
+<div class="font-normal text-xl text-gray-700 mb-5">
+  {{ block.settings.text }}
+</div>
+
+{% comment %}
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  {% content_for 'blocks' %}
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Description",
+ "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+    },
+  ],
+  "presets": [
+    {
+      "name": "Decription Block",
+
+    }
+  ]
+}
+{% endschema %}

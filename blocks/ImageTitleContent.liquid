@@ -1,0 +1,56 @@
+<div
+  href="#"
+  class="flex flex-col rounded-lg md:flex-row w-full"
+>
+  {% if block.settings.image %}
+    <img
+      src="{{ block.settings.image | image_url: width: '60px' }}"
+      class="object-contain"
+    >
+  {% endif %}
+  <div class="flex flex-col justify-between p-4 leading-normal grow">
+    <h5 class="mb-2 !text-2xl font-bold tracking-tight">{{ block.settings.heading }}</h5>
+    <div class="font-normal text-gray-100">
+      {% content_for 'blocks' %}
+    </div>
+    {% if block.settings.url %}
+      <div>
+        <a
+          href=" {{ block.settings.url }}"
+          class="underline focus:outline-none text-gray-700 text-xl inline-block"
+        >
+          Read more
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ImageTitleContent",
+  "blocks": [{"type": "description"}],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "URL"
+    },
+  ],
+  "presets": [
+    {
+      "name": "ImageTitleContent",
+    }
+  ]
+}
+{% endschema %}

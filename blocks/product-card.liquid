@@ -1,0 +1,27 @@
+<div>
+  {% assign product = all_products[block.settings.product] %}
+  {{ block.settings.product | json }}
+  {% if product.featured_image %}
+    <img src="{{ product.featured_image | image_url: width: '400px' }}">
+  {% endif %}
+
+  <p>{{ product.title | json }}</p>
+</div>
+{% schema %}
+{
+  "name": "Product Card",
+
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+  ],
+  "presets": [
+    {
+      "name": "Product Card",
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,70 @@
+<div>
+  <div class="page-width">
+    <div class="flex flex-wrap -mx-4 gap-y-10">
+      {% for collection in section.settings['collection-list'] %}
+        <div class="px-4 w-1/3">
+          <a href="{{ collection.url }}">
+            {% if collection.featured_image %}
+              <img src="{{ collection.featured_image | image_url: width: '340px', height: '400px' }}">
+            {% endif %}
+            <p class="font-bold mt-2">{{ collection.title }}</p>
+            <p>{{ collection.price | money }}</p>
+          </a>
+          <div class="flex flex-wrap -mx-4 gap-y-10">
+            {% if collection.metafields.custom.subcollectionlist.value %}
+              {% assign subcollection = collection.metafields.custom.subcollectionlist %}
+              {% for subcol in subcollection.value %}
+                <div class="px-4 w-1/2">
+                  <a href="{{ subcol.url }}">
+                    {% if subcol.featured_image %}
+                      <img src="{{ subcol.featured_image | image_url: width: '240px', height: '300px' }}">
+                    {% endif %}
+                    <p class="font-bold mt-2">{{ subcol.title }}</p>
+                  </a>
+
+                  {% assign subcolprods = subcol.products %}
+                  {% for subcolprod in subcolprods %}
+                    <!-- {{ subcolprod.type }} -->
+                    {% assign coltitle = collection.title %}
+                    {% if subcolprod.type == coltitle %}
+                      {% if coltitle == subcolprod.type %}
+                        <a href="{{ subcolprod.url }}">
+                          {% if subcolprod.featured_image %}
+                            <img src="{{ subcolprod.featured_image | image_url: width: '240px', height: '300px' }}">
+                          {% endif %}
+                          <p class="font-bold mt-2">{{ subcolprod.title }}</p>
+                          <p>{{ subcolprod.price | money }}</p>
+                        </a>
+                      {% endif %}
+                    {% endif %}
+                    {% comment %}
+                    {% endcomment %}
+                  {% endfor %}
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection List",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "collection_list",
+      "id": "collection-list",
+      "label": "Select Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection with subcollection"
+    }
+  ]
+}
+{% endschema %}

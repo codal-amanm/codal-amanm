@@ -1,0 +1,30 @@
+{% assign product = section.settings.product %}
+<a href="{{ product.url }}">
+  {% if product.featured_image %}
+    <img src="{{ product.featured_image | image_url: width: '340px', height: '400px' }}">
+  {% endif %}
+  <p class="font-bold mt-2">{{ product.title }}</p>
+  <div>
+    {% for option in product.options_with_values %}
+      {{ option | json }}
+    {%- endfor %}
+  </div>
+  <p>{{ product.price | money }}</p>
+</a>
+{% schema %}
+{
+  "name": "Product List",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product",
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Selector"
+    }
+  ]
+}
+{% endschema %}

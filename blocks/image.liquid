@@ -1,0 +1,25 @@
+{% if block.settings.image %}
+  <img
+    src="{{ block.settings.image | image_url: width: '400px' }}"
+    class="block object-cover w-[150px] h-[150px]"
+  >
+{% endif %}
+
+{% schema %}
+{
+  "name": "Image Block",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+  ],
+  "presets": [
+    {
+      "name": "Image",
+    }
+
+  ]
+}
+{% endschema %}

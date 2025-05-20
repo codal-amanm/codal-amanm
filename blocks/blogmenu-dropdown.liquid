@@ -1,0 +1,64 @@
+{% if block.settings.submenu %}
+  <div
+    class="fixed w-full bg-[#121212] top-[84px] left-0 right-0 py-10 overlay-menu hidden"
+    id="{{ block.settings.submenu }}"
+  >
+    <div class="container xl:max-w-[1280px] mx-auto px-4">
+      <div class="flex flex-wrap -mx-4 gap-y-10">
+        <div class="px-4 w-1/2 ">
+          <ul class="flex flex-wrap -mx-4">
+            {% for childlink in block.settings.submenu.links %}
+              <li class="text-white hover:text-opacity-90 tracking-tighter mb-5 font-bold px-4 {% if link.links.size > 2 %}w-1/3 {% else %} w-1/2 {% endif %}">
+                <img src="{{ childlink.object.image | image_url: width: '200px' }}">
+                <p class="mt-2">
+                  {{ childlink.object.title }}
+                </p>
+                <div class="mt-2 font-normal [&>p]:inline">
+                  {{ childlink.object.content | slice: 0, 50 }}
+                </div>
+              </li>
+
+              {% comment %}
+                  {% if childlink.type == 'article_link' %}
+                  <li class="text-white hover:text-opacity-90 tracking-tighter mb-5 font-bold px-4 {% if link.links.size > 2 %}w-1/3 {% else %} w-1/2 {% endif %}">
+                    <img src="{{ childlink.object.image | image_url: width: '200px' }}">
+                    <p class="mt-2">
+                      {{ childlink.object.title }}
+                    </p>
+                    <div class="mt-2 font-normal [&>p]:inline">
+                      {{ childlink.object.content | slice: 0, 50 }}
+                    </div>
+                  </li>
+                {% endif %}
+              {% endcomment %}
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "menu_link",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "submenu",
+      "label": "Menu",
+    },
+  ],
+  "blocks": [
+    {
+      "type": "image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog DropDown Menu",
+    }
+
+  ]
+}
+{% endschema %}
